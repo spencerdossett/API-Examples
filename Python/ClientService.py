@@ -20,7 +20,7 @@ class ClientServiceCalls:
 
     """AddOrUpdateClient Methods"""
     def AddOrUpdateClients(self, updateAction="Fail", test=False, clients=None):
-        result = AddOrUpdateClients(updateAction, test, clients)
+        result = ClientServiceMethods().AddOrUpdateClients(updateAction, test, clients)
         print str(result)
 
     def AddCreditCardToClient(self, clientId, cc):
