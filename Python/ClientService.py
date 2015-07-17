@@ -2,15 +2,19 @@ from suds.client import Client
 import BasicRequestHelper
 from datetime import datetime
 
+
 class ClientServiceCalls:
+
     """This class contains examples of consumer methods for each ClassService method."""
 
     """AddArrival Methods"""
+
     def AddArrival(self, clientId, locationId):
         result = ClientServiceMethods().AddArrival(clientId, locationId)
         print str(result.Message)
 
     """AddClientFormulaNote Methods"""
+
     def AddFormulaNoteToClientWithAppointment(self, clientId, appointmentId, note):
         result = ClientServiceMethods().AddClientFormulaNote(clientId, appointmentId, note)
         print str(result)
@@ -19,6 +23,7 @@ class ClientServiceCalls:
         self.AddFormulaNoteToClientWithAppointment(clientId, None, note)
 
     """AddOrUpdateClient Methods"""
+
     def AddOrUpdateClients(self, updateAction="Fail", test=False, clients=None):
         result = ClientServiceMethods().AddOrUpdateClients(updateAction, test, clients)
         print str(result)
@@ -30,50 +35,54 @@ class ClientServiceCalls:
         result = ClientServiceMethods().AddCreditCardToClient(clientId, cc)
         print str(result)
 
-    def AddNewCreditCardToClient(self, clientId, 
-                                       cardType, 
-                                       lastFour, 
-                                       cardNumber, 
-                                       holderName, 
-                                       expMonth, 
-                                       expYear, 
-                                       address, 
-                                       city, 
-                                       state, 
-                                       postalCode):
+    def AddNewCreditCardToClient(self, clientId,
+                                 cardType,
+                                 lastFour,
+                                 cardNumber,
+                                 holderName,
+                                 expMonth,
+                                 expYear,
+                                 address,
+                                 city,
+                                 state,
+                                 postalCode):
         """A consumer method for adding a new or default credit card
            to a client's information. Note that adding a credit card 
            in particular requires a secure connection (https url) when 
            setting up your service."""
-        result = ClientServiceMethods().CreateAndAddCreditCardToClient(clientId, 
-                                                                       cardType, 
-                                                                       lastFour, 
-                                                                       cardNumber, 
-                                                                       holderName, 
-                                                                       expMonth, 
-                                                                       expYear, 
-                                                                       address, 
-                                                                       city, 
-                                                                       state, 
+        result = ClientServiceMethods().CreateAndAddCreditCardToClient(clientId,
+                                                                       cardType,
+                                                                       lastFour,
+                                                                       cardNumber,
+                                                                       holderName,
+                                                                       expMonth,
+                                                                       expYear,
+                                                                       address,
+                                                                       city,
+                                                                       state,
                                                                        postalCode)
         print str(result)
 
     """AddOrUpdateContactLogs Methods"""
+
     def UpdateContactLogText(self, clientId, text):
         result = ClientServiceMethods().UpdateContactLogText(clientId, text)
         print str(result)
 
     """DeleteClientFormulaNote Methods"""
+
     def DeleteFormulaNote(self, clientId, formulaNoteId):
         result = ClientServiceMethods().DeleteFormulaNote(clientId, formulaNoteId)
         print str(result)
 
     """GetActiveClientMemberships Methods"""
+
     def GetActiveClientMemberships(self, clientId, locationId=None):
         result = ClientServiceMethods().GetActiveClientMemberships(clientId, locationId)
         print str(result)
 
     """GetClientAccountBalances Methods"""
+
     def GetRelativeClientAccountBalances(self, clientIds, balanceDate=None, classId=None):
         result = ClientServiceMethods().GetClientAccountBalances(clientIds, balanceDate, classId)
         print str(result)
@@ -82,48 +91,55 @@ class ClientServiceCalls:
         self.GetRelativeClientAccountBalances(clientIds, classId=classId)
 
     """GetClientContactLogs Methods"""
-    def GetClientContactLogs(self, clientId, 
-                                   startDate=datetime.today(), 
-                                   endDate=datetime.today(), 
-                                   staffIds=None, 
-                                   systemGenerated=False, 
-                                   typeIds=None, 
-                                   subtypeIds=None):
-        result = ClientServiceMethods().GetClientContactLogs(clientId, 
-                                                             startDate, 
-                                                             endDate, 
-                                                             staffIds, 
-                                                             systemGenerated, 
-                                                             typeIds, 
+
+    def GetClientContactLogs(self, clientId,
+                             startDate=datetime.today(),
+                             endDate=datetime.today(),
+                             staffIds=None,
+                             systemGenerated=False,
+                             typeIds=None,
+                             subtypeIds=None):
+        result = ClientServiceMethods().GetClientContactLogs(clientId,
+                                                             startDate,
+                                                             endDate,
+                                                             staffIds,
+                                                             systemGenerated,
+                                                             typeIds,
                                                              subtypeIds)
         print str(result)
 
     """GetClientContracts Methods"""
+
     def GetClientContracts(self, clientId=None):
         result = ClientServiceMethods().GetClientContracts(clientId)
         print str(result)
 
     """GetClientFormulaNotes Methods"""
+
     def GetClientFormulaNotes(self, clientId, appointmentId=None):
         result = ClientServiceMethods().GetClientFormulaNotes(clientId, appointmentId)
         print str(result)
 
     """GetClientIndexes Methods"""
+
     def GetClientIndexes(self):
         result = ClientServiceMethods().GetClientIndexes()
         print str(result)
 
     """GetClientPurchases Methods"""
+
     def GetClientPurchases(self, clientId, startDate=datetime.today(), endDate=datetime.today()):
         result = ClientServiceMethods().GetClientPurchases(clientId, startDate, endDate)
         print str(result)
 
     """GetClientReferralTypes Methods"""
+
     def GetClientReferralTypes(self):
         result = ClientServiceMethods().GetClientReferralTypes()
         print str(result)
 
     """GetClients Methods"""
+
     def GetClientsBySingleId(self, id):
         result = ClientServiceMethods().GetClientsBySingleId(id)
         print str(result)
@@ -141,65 +157,70 @@ class ClientServiceCalls:
         print str(result)
 
     """GetClientSchedule Methods"""
+
     def GetClientSchedule(self, clientId, startDate=datetime.today(), endDate=datetime.today()):
         result = ClientServiceMethods().GetClientSchedule(clientId, startDate, endDate)
         print str(result)
 
     """GetClientServices Methods"""
-    def GetClientServices(self, clientId, 
-                                classId=0, 
-                                programIds=None, 
-                                sessionTypeIds=None, 
-                                locationIds=None, 
-                                visitCount=0, 
-                                startDate=None, 
-                                endDate=None, 
-                                showActiveOnly=False):
-        result = ClientServiceMethods().GetClientServices(clientId, 
-                                                          classId, 
-                                                          programIds, 
-                                                          sessionTypeIds, 
-                                                          locationIds, 
-                                                          visitCount, 
-                                                          startDate, 
-                                                          endDate, 
+
+    def GetClientServices(self, clientId,
+                          classId=0,
+                          programIds=None,
+                          sessionTypeIds=None,
+                          locationIds=None,
+                          visitCount=0,
+                          startDate=None,
+                          endDate=None,
+                          showActiveOnly=False):
+        result = ClientServiceMethods().GetClientServices(clientId,
+                                                          classId,
+                                                          programIds,
+                                                          sessionTypeIds,
+                                                          locationIds,
+                                                          visitCount,
+                                                          startDate,
+                                                          endDate,
                                                           showActiveOnly)
         print str(result)
 
-    def GetClientServicesForPastYear(self, clientId, 
-                                           classId=0, 
-                                           programIds=None, 
-                                           sessionTypeIds=None, 
-                                           locationIds=None, 
-                                           visitCount=0, 
-                                           showActiveOnly=False):
-        self.GetClientServices(clientId, 
-                               classId, 
-                               programIds, 
-                               sessionTypeIds, 
-                               locationIds, 
-                               visitCount, 
-                               BasicRequestHelper.oneYearAgo, 
-                               datetime.today(), 
+    def GetClientServicesForPastYear(self, clientId,
+                                     classId=0,
+                                     programIds=None,
+                                     sessionTypeIds=None,
+                                     locationIds=None,
+                                     visitCount=0,
+                                     showActiveOnly=False):
+        self.GetClientServices(clientId,
+                               classId,
+                               programIds,
+                               sessionTypeIds,
+                               locationIds,
+                               visitCount,
+                               BasicRequestHelper.oneYearAgo,
+                               datetime.today(),
                                showActiveOnly)
 
     """GetClientVisits Methods"""
-    def GetClientVisits(self, clientId, 
-                              startDate=datetime.today(), 
-                              endDate=datetime.today(), 
-                              unpaidsOnly=False):
-        result = ClientServiceMethods().GetClientVisits(clientId, 
-                                                        startDate, 
-                                                        endDate, 
+
+    def GetClientVisits(self, clientId,
+                        startDate=datetime.today(),
+                        endDate=datetime.today(),
+                        unpaidsOnly=False):
+        result = ClientServiceMethods().GetClientVisits(clientId,
+                                                        startDate,
+                                                        endDate,
                                                         unpaidsOnly)
         print str(result)
 
     """GetContactLogTypes Methods"""
+
     def GetContactLogTypes(self):
         result = ClientServiceMethods().GetContactLogTypes()
         print str(result)
 
     """GetCustomClientFields Methods"""
+
     def GetCustomClientFields(self):
         """A consumer method for retrieving all custom client fields. This contains
            an example of parsing a result to print fields out in an easier-to-read
@@ -212,11 +233,13 @@ class ClientServiceCalls:
             print "%2d - %s" % (field.ID, field.Name)
 
     """GetRequiredClientFields Methods"""
+
     def GetRequiredClientFields(self):
         result = ClientServiceMethods().GetRequiredClientFields()
         print str(result)
 
     """SendUserNewPassword methods"""
+
     def SendUserNewPassword(self, userEmail, userFirstName, userLastName):
         result = ClientServiceMethods().SendUserNewPassword(userEmail, userFirstName, userLastName)
         if hasattr(result, "Message"):
@@ -225,23 +248,26 @@ class ClientServiceCalls:
             print "No error message returned. Success!"
 
     """UpdateClientServices Methods"""
+
     def UpdateClientServices(self, clientServices, test=False):
         result = ClientServiceMethods().UpdateClientServices(clientServices, test)
         print str(result)
 
     """UploadClientDocument Methods"""
+
     def UploadClientDocument(self, clientId, fileName, fileSize):
         result = ClientServiceMethods().UploadClientDocument(clientId, fileName, fileSize)
         print str(result)
 
     """ValidateLogin Methods"""
+
     def ValidateLogin(self, username, password):
         result = ClientServiceMethods().ValidateLogin(username, password)
         print str(result)
 
 
-
 class ClientServiceMethods:
+
     """This class contains producer methods for all ClientService methods."""
     wsdl = BasicRequestHelper.BuildWsdlUrl("Client")
     """We manually set the SoapAction field here by specifying location. Specifically,
@@ -253,6 +279,7 @@ class ClientServiceMethods:
         return BasicRequestHelper.CreateBasicRequest(self.service, requestName)
 
     """AddArrival methods"""
+
     def AddArrival(self, clientId, locationId):
         request = self.CreateBasicRequest("AddArrivalRequest")
 
@@ -262,6 +289,7 @@ class ClientServiceMethods:
         return self.service.service.AddArrival(request)
 
     """AddClientFormulaNote methods"""
+
     def AddClientFormulaNote(self, clientId, appointmentId, note):
         request = self.CreateBasicRequest("AddClientFormulaNote")
 
@@ -272,6 +300,7 @@ class ClientServiceMethods:
         return self.service.service.AddClientFormulaNote(request)
 
     """AddOrUpdateClient methods"""
+
     def AddOrUpdateClients(self, updateAction, test, clients):
         request = self.CreateBasicRequest("AddOrUpdateClients")
 
@@ -283,24 +312,24 @@ class ClientServiceMethods:
 
     def AddCreditCardToClient(self, clientId, cc):
 
-        #Call GetClientBySingleID, then grab the first client off the list.
+        # Call GetClientBySingleID, then grab the first client off the list.
         clientToEdit = self.GetClientsBySingleId(clientId).Clients.Client[0]
         clientToEdit.ClientCreditCard = cc
         Clients = BasicRequestHelper.FillArrayType(self.service, [clientToEdit], "Client", "Client")
 
         return self.AddOrUpdateClients("Fail", False, Clients)
 
-    def CreateAndAddCreditCardToClient(self, clientId, 
-                                             cardType, 
-                                             lastFour, 
-                                             number, 
-                                             holderName, 
-                                             expMonth, 
-                                             expYear, 
-                                             address, 
-                                             city, 
-                                             state, 
-                                             postalCode):
+    def CreateAndAddCreditCardToClient(self, clientId,
+                                       cardType,
+                                       lastFour,
+                                       number,
+                                       holderName,
+                                       expMonth,
+                                       expYear,
+                                       address,
+                                       city,
+                                       state,
+                                       postalCode):
         """This method shows how to create a credit card item from given simple types."""
         cc = self.service.factory.create("ClientCreditCard")
         cc.CardType = cardType
@@ -317,6 +346,7 @@ class ClientServiceMethods:
         return self.AddCreditCardToClient(clientId, cc)
 
     """AddOrUpdateContactLogs methods"""
+
     def UpdateContactLogText(self, clientId, text):
         """This method will change the text of every contact log 
            applied to clientId in the past year to text."""
@@ -329,10 +359,11 @@ class ClientServiceMethods:
         request.UpdateAction = "Fail"
         request.Test = False
         request.ContactLogs = contactLogs
-        
+
         return self.service.service.AddOrUpdateContactLogs(request)
 
     """DeleteClientFormulaNote methods"""
+
     def DeleteFormulaNote(self, clientId, formulaNoteId):
         request = self.CreateBasicRequest("DeleteClientFormulaNote")
 
@@ -342,6 +373,7 @@ class ClientServiceMethods:
         return self.service.service.DeleteClientFormulaNote(request)
 
     """GetActiveClientMemberships Methods"""
+
     def GetActiveClientMemberships(self, clientId, locationId):
         request = self.CreateBasicRequest("GetActiveClientMemberships")
 
@@ -351,6 +383,7 @@ class ClientServiceMethods:
         return self.service.service.GetActiveClientMemberships(request)
 
     """GetClientAccountBalances methods"""
+
     def GetClientAccountBalances(self, clientIds, balanceDate, classId):
         request = self.CreateBasicRequest("GetClientAccountBalances")
 
@@ -364,13 +397,14 @@ class ClientServiceMethods:
         return self.service.service.GetClientAccountBalances(request)
 
     """GetClientContactLogs methods"""
-    def GetClientContactLogs(self, clientId, 
-                                   startDate, 
-                                   endDate, 
-                                   staffIds, 
-                                   systemGenerated, 
-                                   typeIds, 
-                                   subtypeIds):
+
+    def GetClientContactLogs(self, clientId,
+                             startDate,
+                             endDate,
+                             staffIds,
+                             systemGenerated,
+                             typeIds,
+                             subtypeIds):
         request = self.CreateBasicRequest("GetClientContactLogsRequest")
 
         request.ClientID = clientId
@@ -385,15 +419,16 @@ class ClientServiceMethods:
 
     def GetClientContactLogsByClient(self, clientId, systemGenerated):
         """Convenience method to find all contact logs for a given client within the past year."""
-        return self.GetClientContactLogs(clientId, 
-                                         BasicRequestHelper.oneYearAgo, 
-                                         datetime.today(), 
-                                         None, 
-                                         systemGenerated, 
-                                         None, 
+        return self.GetClientContactLogs(clientId,
+                                         BasicRequestHelper.oneYearAgo,
+                                         datetime.today(),
+                                         None,
+                                         systemGenerated,
+                                         None,
                                          None)
 
     """GetClientContracts methods"""
+
     def GetClientContracts(self, clientId):
         request = self.CreateBasicRequest("GetClientContracts")
 
@@ -402,6 +437,7 @@ class ClientServiceMethods:
         return self.service.service.GetClientContracts(request)
 
     """GetClientFormulaNotes methods"""
+
     def GetClientFormulaNotes(self, clientId, appointmentId):
         request = self.CreateBasicRequest("GetClientFormulaNotes")
 
@@ -411,12 +447,14 @@ class ClientServiceMethods:
         return self.service.service.GetClientFormulaNotes(request)
 
     """GetClientIndexes methods"""
+
     def GetClientIndexes(self):
         request = self.CreateBasicRequest("GetClientIndexesRequest")
 
         return self.service.service.GetClientIndexes(request)
 
     """GetClientPurchases methods"""
+
     def GetClientPurchases(self, clientId, startDate, endDate):
         request = self.CreateBasicRequest("GetClientPurchases")
 
@@ -427,12 +465,14 @@ class ClientServiceMethods:
         return self.service.service.GetClientPurchases(request)
 
     """GetClientReferralTypes methods"""
+
     def GetClientReferralTypes(self):
         request = self.CreateBasicRequest("GetClientReferralTypes")
 
         return self.service.service.GetClientReferralTypes(request)
 
     """GetClientVisits methods"""
+
     def GetClientVisits(self, clientId, startDate, endDate, unpaidsOnly):
         request = self.CreateBasicRequest("GetClientVisits")
 
@@ -444,6 +484,7 @@ class ClientServiceMethods:
         return self.service.service.GetClientVisits(request)
 
     """GetClients methods"""
+
     def GetAllClients(self):
         return self.GetClientsByString(" ")
 
@@ -454,7 +495,7 @@ class ClientServiceMethods:
         """Convenience method to find clients containing searchStr in their name or e-mail."""
         request = self.CreateBasicRequest("GetClientsRequest")
 
-        #Since SearchText is just a string, we can assign it directly.
+        # Since SearchText is just a string, we can assign it directly.
         request.SearchText = searchStr
 
         return self.service.service.GetClients(request)
@@ -471,6 +512,7 @@ class ClientServiceMethods:
         return self.service.service.GetClients(request)
 
     """GetClientSchedule methods"""
+
     def GetClientSchedule(self, clientId, startDate, endDate):
         request = self.CreateBasicRequest("GetClientSchedule")
 
@@ -481,15 +523,16 @@ class ClientServiceMethods:
         return self.service.service.GetClientSchedule(request)
 
     """GetClientServices methods"""
-    def GetClientServices(self, clientId, 
-                                classId, 
-                                programIds, 
-                                sessionTypeIds, 
-                                locationIds, 
-                                visitCount, 
-                                startDate, 
-                                endDate, 
-                                showActiveOnly):
+
+    def GetClientServices(self, clientId,
+                          classId,
+                          programIds,
+                          sessionTypeIds,
+                          locationIds,
+                          visitCount,
+                          startDate,
+                          endDate,
+                          showActiveOnly):
         """A few notes about GetClientServices:
             1. If you don't want to pass a Class ID in, pass 0. This acts as you would expect None to.
             2. ProgramIDs is a required field."""
@@ -498,7 +541,8 @@ class ClientServiceMethods:
         request.ClientID = clientId
         request.ClassID = classId
         request.ProgramIDs = BasicRequestHelper.FillArrayType(self.service, programIds, "Int")
-        request.SessionTypeIDs = BasicRequestHelper.FillArrayType(self.service, sessionTypeIds, "Int")
+        request.SessionTypeIDs = BasicRequestHelper.FillArrayType(
+            self.service, sessionTypeIds, "Int")
         request.LocationIDs = BasicRequestHelper.FillArrayType(self.service, locationIds, "Int")
         request.VisitCount = visitCount
         request.StartDate = startDate
@@ -508,27 +552,31 @@ class ClientServiceMethods:
         return self.service.service.GetClientServices(request)
 
     """GetContactLogTypes methods"""
+
     def GetContactLogTypes(self):
         request = self.CreateBasicRequest("GetContactLogTypes")
 
         return self.service.service.GetContactLogTypes(request)
 
     """GetCustomClientFields methods"""
+
     def GetCustomClientFields(self):
         request = self.CreateBasicRequest("GetCustomClientFieldsRequest")
 
         return self.service.service.GetCustomClientFields(request)
 
     """GetRequiredClientFields methods"""
+
     def GetRequiredClientFields(self):
         request = self.CreateBasicRequest("GetRequiredClientFields")
 
         return self.service.service.GetRequiredClientFields(request)
 
     """SendUserNewPassword methods"""
+
     def SendUserNewPassword(self, userEmail, userFirstName, userLastName):
         request = self.CreateBasicRequest("SendUserNewPassword")
-        
+
         request.UserEmail = userEmail
         request.UserFirstName = userFirstName
         request.UserLastName = userLastName
@@ -536,6 +584,7 @@ class ClientServiceMethods:
         return self.service.service.SendUserNewPassword(request)
 
     """UpdateClientServices methods"""
+
     def UpdateClientServices(self, clientServices, test):
         request = self.CreateBasicRequest("UpdateClientServices")
 
@@ -548,6 +597,7 @@ class ClientServiceMethods:
         return self.service.service.UpdateClientServices(request)
 
     """UploadClientDocument methods"""
+
     def UploadClientDocument(self, clientId, fileName, fileSize):
         request = self.CreateBasicRequest("UploadClientDocument")
 
@@ -558,6 +608,7 @@ class ClientServiceMethods:
         return self.service.service.UploadClientDocument(request)
 
     """ValidateLogin methods"""
+
     def ValidateLogin(self, username, password):
         request = self.CreateBasicRequest("ValidateLogin")
 
