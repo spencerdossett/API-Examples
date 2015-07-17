@@ -2,10 +2,13 @@ import BasicRequestHelper
 from suds.client import Client
 from datetime import datetime
 
+
 class StaffServiceCalls():
+
     """This class contains examples of consumer methods for each StaffService method."""
 
     """AddOrUpdateStaff Methods"""
+
     def AddOrUpdateStaff(self, updateAction="AddNew", test=False, staff=None):
         result = StaffServiceMethods().AddOrUpdateStaff(updateAction,
                                                         test,
@@ -14,30 +17,31 @@ class StaffServiceCalls():
 
     def EditBioForAllStaff(self, newBio):
         """This function shows how to grab staff to edit, giving a template for
-           any similar calls. Modifying the GetStaff call will narrow the 
+           any similar calls. Modifying the GetStaff call will narrow the
            affected staff members."""
-        staff = StaffServiceMethods().GetStaff(None, 
-                                               None, 
-                                               None, 
-                                               None, 
-                                               None, 
-                                               None, 
-                                               datetime.today(), 
+        staff = StaffServiceMethods().GetStaff(None,
+                                               None,
+                                               None,
+                                               None,
+                                               None,
+                                               None,
+                                               datetime.today(),
                                                None).StaffMembers.Staff
         for currStaff in staff:
             currStaff.Bio = newBio
 
         self.AddOrUpdateStaff("Fail", False, staff)
-    
+
     """GetStaff Methods"""
+
     def GetStaff(self, staffIds=None,
-                       staffUsername=None,
-                       staffPassword=None,
-                       siteIds=None,
-                       filters=None,
-                       sessionTypeId=None,
-                       startDateTime=datetime.today(),
-                       locationId=None):
+                 staffUsername=None,
+                 staffPassword=None,
+                 siteIds=None,
+                 filters=None,
+                 sessionTypeId=None,
+                 startDateTime=datetime.today(),
+                 locationId=None):
         result = StaffServiceMethods().GetStaff(staffIds,
                                                 staffUsername,
                                                 staffPassword,
@@ -49,13 +53,13 @@ class StaffServiceCalls():
         print str(result)
 
     def GetStaffWithFiltersAsStrings(self, staffIds=None,
-                                           staffUsername=None,
-                                           staffPassword=None,
-                                           siteIds=None,
-                                           filters=None,
-                                           sessionTypeId=None,
-                                           startDateTime=datetime.today(),
-                                           locationId=None):
+                                     staffUsername=None,
+                                     staffPassword=None,
+                                     siteIds=None,
+                                     filters=None,
+                                     sessionTypeId=None,
+                                     startDateTime=datetime.today(),
+                                     locationId=None):
         result = StaffServiceMethods().GetStaffWithFiltersAsStrings(staffIds,
                                                                     staffUsername,
                                                                     staffPassword,
@@ -67,16 +71,20 @@ class StaffServiceCalls():
         print str(result)
 
     """GetStaffImgURL Methods"""
+
     def GetStaffImgUrl(self, staffId):
         result = StaffServiceMethods().GetStaffImgUrl(staffId)
         print str(result)
 
     """GetStaffPermissions Methods"""
+
     def GetStaffPermissions(self, staffId):
         result = StaffServiceMethods().GetStaffPermissions(staffId)
         print str(result)
 
+
 class StaffServiceMethods():
+
     """This class contains producer methods for all StaffService methods."""
     wsdl = BasicRequestHelper.BuildWsdlUrl("Staff")
     service = Client(wsdl)
@@ -85,6 +93,7 @@ class StaffServiceMethods():
         return BasicRequestHelper.CreateBasicRequest(self.service, requestName)
 
     """AddOrUpdateStaff methods"""
+
     def AddOrUpdateStaff(self, updateAction, test, staff):
         request = self.CreateBasicRequest("AddOrUpdateStaff")
 
@@ -95,24 +104,24 @@ class StaffServiceMethods():
         return self.service.service.AddOrUpdateStaff(request)
 
     """GetStaff methods"""
+
     def GetStaff(self, staffIds,
-                       staffUsername,
-                       staffPassword,
-                       siteIds,
-                       filters,
-                       sessionTypeId,
-                       startDateTime,
-                       locationId):
+                 staffUsername,
+                 staffPassword,
+                 siteIds,
+                 filters,
+                 sessionTypeId,
+                 startDateTime,
+                 locationId):
         request = self.CreateBasicRequest("GetStaff")
-
-
 
         request.StaffIDs = BasicRequestHelper.FillArrayType(self.service, staffIds, "Long")
         request.StaffCredentials = BasicRequestHelper.CreateStaffCredentials(self.service,
                                                                              staffUsername,
                                                                              staffPassword,
                                                                              siteIds)
-        request.Filters = BasicRequestHelper.FillArrayType(self.service, filters, "StaffFilter", "StaffFilter")
+        request.Filters = BasicRequestHelper.FillArrayType(
+            self.service, filters, "StaffFilter", "StaffFilter")
         request.SessionTypeID = sessionTypeId
         request.StartDateTime = startDateTime
         request.LocationID = locationId
@@ -120,16 +129,17 @@ class StaffServiceMethods():
         return self.service.service.GetStaff(request)
 
     def GetStaffWithFiltersAsStrings(self, staffIds,
-                                           staffUsername,
-                                           staffPassword,
-                                           siteIds,
-                                           filters,
-                                           sessionTypeId,
-                                           startDateTime,
-                                           locationId):
+                                     staffUsername,
+                                     staffPassword,
+                                     siteIds,
+                                     filters,
+                                     sessionTypeIds,
+                                     startDateTime,
+                                     locationId):
         filterEnums = []
         for currFilter in filters:
-            filterEnums.append(BasicRequestHelper.GetEnumerable(self.service, "StaffFilter", currFilter))
+            filterEnums.append(
+                BasicRequestHelper.GetEnumerable(self.service, "StaffFilter", currFilter))
 
         return self.GetStaff(staffIds,
                              staffUsername,
@@ -141,14 +151,16 @@ class StaffServiceMethods():
                              locationId)
 
     """GetStaffImgURL methods"""
+
     def GetStaffImgUrl(self, staffId):
-        request =  self.CreateBasicRequest("GetStaffImgURL")
+        request = self.CreateBasicRequest("GetStaffImgURL")
 
         request.StaffID = staffId
 
         return self.service.service.GetStaffImgURL(request)
 
     """GetStaffPermissions methods"""
+
     def GetStaffPermissions(self, staffId):
         request = self.CreateBasicRequest("GetStaffPermissions")
 
