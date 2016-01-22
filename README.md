@@ -10,5 +10,6 @@ For support relating to the MINDBODY SOAP API, please refer to https://developer
 ## External References
 A number of user-made integrations consuming the MINDBODY SOAP API can be found on GitHub that may help developers who are new to the MINDBODY API get started.
 
-Example: https://github.com/vacoj/MINDBODY-Django
+Django example: https://github.com/vacoj/MINDBODY-Django
+iOS (Objective-C) example: https://github.com/arrak-rukkharat/API-Integration-iOS
 
